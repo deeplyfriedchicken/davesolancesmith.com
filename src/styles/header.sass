@@ -13,12 +13,13 @@
     flex-direction: row
     justify-content: center
     .is-active
-        color: $link
+        color: $primary
         +desktop
-            border-bottom: 1px solid $link
+            border-bottom: 1px solid $primary
     .navbar-item
         display: block
+        &:hover
+            color: $primary
         +desktop
             &:hover
-                color: $link
-                border-bottom: 1px solid $link
+                border-bottom: 1px solid $primary
