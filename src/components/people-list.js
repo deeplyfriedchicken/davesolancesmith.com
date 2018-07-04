@@ -34,7 +34,7 @@ class PeopleList extends Component {
   render () {
     const breakpointColumnsObj = {
       default: 2,
-      500: 1
+      675: 1
     }
     return (
       <Masonry
