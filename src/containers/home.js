@@ -4,9 +4,9 @@ import { fetchPage } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
 import Announcements from './announcements'
-import People from './people'
-import Projects from './projects'
-import Publications from './publications'
+
+import Container from './../components/container'
+import Loading from './../components/loading'
 
 import Slider from 'react-slick'
 
@@ -34,13 +34,6 @@ class Home extends Component {
     })
   }
 
-  renderLoading (loading) {
-    if (loading) {
-      return (
-        <div className="has-text-centered loading"><i className="fa-spin fas fa-compass"></i></div>
-      )
-    }
-  }
   renderSlides () {
     if (this.props.home.slides) {
       return this.props.home.slides.map(slide => {
@@ -85,13 +78,7 @@ class Home extends Component {
   }
 
   render () {
-    if (this.state.isLoading) {
-      return (
-        <div className="page-container">
-          {this.renderLoading(this.state.isLoading)}
-        </div>
-      )
-    }
+    if (this.state.isLoading) return <Loading loading={this.state.isLoading} />
     const home = this.props.home
     const settings = {
       dots: true,
@@ -112,11 +99,10 @@ class Home extends Component {
           {this.renderSlides()}
         </Slider>
 
-        <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.home.content}}></div>
+        <Container>
+          <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.home.content}}></div>
           <Announcements limit={home.annoucnement_limit} />
-          <Publications limit={home.publications_limit} />
-          <People limit={home.people_limit} />
-          <Projects limit={home.projects_limit} />
+        </Container>
       </div>
     )
   }

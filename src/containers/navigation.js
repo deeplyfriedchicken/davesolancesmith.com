@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { fetchNavLinks, fetchStaticContent } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
-import '../styles/header.css'
+import '../styles/navigation.css'
 
-class Header extends Component {
+class Navigation extends Component {
   constructor (props) {
     super(props)
 
@@ -30,9 +30,9 @@ class Header extends Component {
     return this.props.navLinks.map(link => {
       switch(link.name) {
         case('Home'):
-          return <NavLink key={link.url} exact className="navbar-item" activeClassName="is-active" to={`${link.url}`}>{link.name}</NavLink>
+          return <NavLink className="navbar-item navbar-main" key={link.url} activeClassName="is-active" exact to={`${link.url}`}>{link.name}</NavLink>
         default:
-          return <NavLink key={link.url} className="navbar-item" activeClassName="is-active" to={`${link.url}`}>{link.name}</NavLink>
+          return <NavLink key={link.url} className="navbar-item navbar-main" activeClassName="is-active" to={`${link.url}`}>{link.name}</NavLink>
       }
     })
   }
@@ -54,32 +54,25 @@ class Header extends Component {
 
   render () {
     return (
-      <div className="hero-head">
-        <header>
-          <div className="container">
-            <div className="has-text-centered header">
-              <div className="has-text-centered">
-                {this.renderStatic()}
-              </div>
-            </div>
-            <nav class="navbar is-transparent">
-              <div class="navbar-brand">
-                <div class={`navbar-burger burger ${(this.state.isActive ? ' is-active' : '')}`} onClick={this.toggleBurger}>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-
-              <div class={`navbar-menu ${(this.state.isActive ? ' is-active' : '')}`}>
-                <div id="center-items" class="navbar-start">
-                  {this.renderLinks()}
-                </div>
-              </div>
-            </nav>
+      <nav className="navbar is-transparent">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="">
+            <logo></logo>
+          </a>
+          <div className={`navbar-burger burger ${(this.state.isActive ? ' is-active' : '')}`} onClick={this.toggleBurger}>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-        </header>
-      </div>
+        </div>
+
+        <div className={`navbar-menu ${(this.state.isActive ? ' is-active' : '')}`}>
+          <div className="navbar-start">
+            {this.renderLinks()}
+          </div>
+
+        </div>
+      </nav>
     )
   }
 }
@@ -94,4 +87,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchNavLinks, fetchStaticContent })(Header))
+export default withRouter(connect(mapStateToProps, { fetchNavLinks, fetchStaticContent })(Navigation))

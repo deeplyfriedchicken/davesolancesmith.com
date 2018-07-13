@@ -5,6 +5,9 @@ import { fetchProject } from '../actions/index'
 
 import { Helmet } from 'react-helmet'
 
+import Container from '../components/container'
+import Loading from '../components/loading'
+
 import '../styles/project.css'
 
 class Project extends Component {
@@ -30,24 +33,27 @@ class Project extends Component {
   }
 
   render () {
+    if (this.state.isLoading) return <Loading loading={this.state.isLoading} />
     if (this.props.project.name) {
       const project = this.props.project
       return (
-        <div id="project" className="project-container">
-          <Helmet>
-            <title>{`Research | ${project.name}`}</title>
-            <meta name="description" content={project.description} />
-          </Helmet>
-          <div className="project-info has-text-centered">
-            <img className="featured-image" src={project.featured_image} alt={project.name} />
-            <h1 id="name" className="title name">{project.name}</h1>
-            <p>{project.description}</p>
+        <Container>
+          <div id="project" className="project-container">
+            <Helmet>
+              <title>{`Research | ${project.name}`}</title>
+              <meta name="description" content={project.description} />
+            </Helmet>
+            <div className="project-info has-text-centered">
+              <img className="featured-image" src={project.featured_image} alt={project.name} />
+              <h1 id="name" className="title name">{project.name}</h1>
+              <p>{project.description}</p>
+            </div>
+            <div className="single-content" dangerouslySetInnerHTML={{__html: project.content}}></div>
           </div>
-          <div className="single-content" dangerouslySetInnerHTML={{__html: project.content}}></div>
-        </div>
+        </Container>
       )
     } else {
-      return <div></div>
+      return <Container><div>Project not found</div></Container>
     }
   }
 }

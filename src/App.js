@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import ReactGA from 'react-ga'
 
-import Header from './containers/header'
+import Navigation from './containers/navigation'
 import Footer from './components/footer'
 
 import Page from './containers/page'
@@ -21,23 +21,15 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <Header />
-          <div>
-            <div className="container ">
-              <div className="columns is-mobile is-multiline is-centered">
-                <div className="column is-10 is-centered">
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/home" component={Home} />
-                  <Route exact path="/people/:person" component={Person} />
-                  <Route exact path="/research-projects/:project" component={Project} />
-                  <Route exact path="/:page" render={(props) => (
-                    <Page slug={props.match.params.page} key={props.match.params.page} />)} />
-                </Switch>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Navigation />          
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/people/:person" component={Person} />
+            <Route exact path="/research-projects/:project" component={Project} />
+            <Route exact path="/:page" render={(props) => (
+              <Page slug={props.match.params.page} key={props.match.params.page} />)} />
+          </Switch>
           <Footer />
         </div>
       </div>

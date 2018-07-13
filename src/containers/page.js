@@ -9,6 +9,10 @@ import People from './people'
 import Projects from './projects'
 import Publications from './publications'
 
+import Hero from './../components/hero'
+import Container from './../components/container'
+import Loading from './../components/loading'
+
 class Page extends Component {
   constructor (props) {
     super(props)
@@ -54,50 +58,8 @@ class Page extends Component {
     }
   }
 
-  renderImage () {
-    if (this.props.page.featured_image) {
-      return (
-        <section className="hero is-info is-medium is-bold" style={{backgroundImage: `url(${this.props.page.featured_image})` }}>
-          <div id="page-hero" className="hero-body">
-            <div className="has-text-centered">
-              <div>
-                {this.renderTitle()}
-              </div>
-              <div>
-                {this.renderSubtitle()}
-              </div>
-            </div>
-          </div>
-        </section>
-      )
-    } else {
-      return (
-        <div>
-          <div className="header-content">
-            <div className="has-text-centered">
-              <h1 className="title is-spaced">
-                {this.props.page.title}
-              </h1>
-            </div>
-          </div>
-
-          <div className="subheader-content has-text-centered">
-            <h4 className="subtitle is-4"><i>{this.props.page.description}</i></h4>
-            <hr/>
-          </div>
-        </div>
-      )
-    }
-  }
-
   render () {
-    if (this.state.isLoading) {
-      return (
-        <div className="page-container">
-          {this.renderLoading(this.state.isLoading)}
-        </div>
-      )
-    }
+    if (this.state.isLoading) return <Loading loading={this.state.isLoading} />
     return (
       <div className="page-container">
         <Helmet>
@@ -105,20 +67,22 @@ class Page extends Component {
           <meta name="description" content={this.props.page.description} />
         </Helmet>
 
-        {this.renderImage()}
+        <Hero hero={this.props.page.featured_image} title={this.props.page.title} subtitle={this.props.page.description} />
 
-        <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.page.content}}></div>
-        <Route exact path="/" render={() => (
-          <div>
-            <Announcements />
-            <Publications />
-            <People />
-            <Projects />
-          </div> )}/>
-        <Route exact path="/announcements" component={Announcements}/>
-        <Route exact path="/publications" component={Publications}/>
-        <Route exact path="/research-projects" component={Projects}/>
-        <Route exact path="/people" component={People}/>
+        <Container>
+          <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.page.content}}></div>
+          <Route exact path="/" render={() => (
+            <div>
+              <Announcements />
+              <Publications />
+              <People />
+              <Projects />
+            </div> )}/>
+          <Route exact path="/announcements" component={Announcements}/>
+          <Route exact path="/publications" component={Publications}/>
+          <Route exact path="/research-projects" component={Projects}/>
+          <Route exact path="/people" component={People}/>
+        </Container>
       </div>
     )
   }
