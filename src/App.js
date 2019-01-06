@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { hot } from 'react-hot-loader'
 import ReactGA from 'react-ga'
 
 import Navigation from './containers/navigation'
@@ -37,4 +38,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default hot(module)(App)
