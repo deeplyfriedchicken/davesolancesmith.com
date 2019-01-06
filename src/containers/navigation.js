@@ -55,8 +55,8 @@ class Navigation extends Component {
   render () {
     return (
       <nav className="navbar is-transparent">
-        <div class="navbar-brand">
-          <a class="navbar-item">
+        <div className="navbar-brand">
+          <a className="navbar-item">
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Dave Solance Smith Logo" />
           </a>
 
