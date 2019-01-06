@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchNavLinks, fetchStaticContent } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
-import '../styles/navigation.css'
+import '../styles/navigation.sass'
 
 class Navigation extends Component {
   constructor (props) {
@@ -55,22 +55,21 @@ class Navigation extends Component {
   render () {
     return (
       <nav className="navbar is-transparent">
-        <div className="navbar-brand">
-          <a className="navbar-item" href="">
-            <logo></logo>
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Dave Solance Smith Logo" />
           </a>
-          <div className={`navbar-burger burger ${(this.state.isActive ? ' is-active' : '')}`} onClick={this.toggleBurger}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
 
+          <a className={`navbar-burger burger ${(this.state.isActive ? ' is-active' : '')}`} onClick={this.toggleBurger}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
         <div className={`navbar-menu ${(this.state.isActive ? ' is-active' : '')}`}>
           <div className="navbar-start">
             {this.renderLinks()}
           </div>
-
         </div>
       </nav>
     )
