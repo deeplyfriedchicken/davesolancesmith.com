@@ -1,11 +1,11 @@
-version: '3'
+version: '3.7'
 services:
   node:
     container_name: davesolancesmith
     build: .
-    command: npm start
+    command: ["npm", "run", "start"]
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/app
+      - /app/node_modules
     ports:
       - "3000:3000"

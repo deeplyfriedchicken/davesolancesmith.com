@@ -1,11 +1,11 @@
 FROM node:10-alpine
 
-WORKDIR /usr/src/app
+RUN apk add --update --no-cache ca-certificates nodejs-npm && npm i -g npm@6.5.0
 
-COPY . .
+# create app dir and set as workdir
+RUN mkdir -p /app
+WORKDIR /app
 
+# install npm packages
+COPY . /app/
 RUN npm install
-
-RUN apk update && apk upgrade && apk add --no-cache git
-
-RUN git config --global user.email "kevin.a.cunanan@gmail.com" && git config --global user.name "Kevin Cunanan"
