@@ -34,32 +34,31 @@ class Person extends Component {
 
   render () {
     if (this.state.isLoading) return <Loading loading={this.state.isLoading} />
-    if (this.props.person.projects) {
-      const person = this.props.person
-      const name = `${person.first_name} ${person.last_name}`
-      return (
-        <Container>
-          <div id="profile" ref="profile" className="person-container">
-            <Helmet>
-              <title>{`People | ${name}`}</title>
-            </Helmet>
-            <div className="person-info has-text-centered">
-              <img className="profile-picture" src={person.profile_picture} alt={name} />
-              <h1 id="name" className="title name">{name}</h1>
-              <p>{person.affiliation}</p>
-              <p>{`${person.college} ${person.graduation_year}`}</p>
-            </div>
-            <div className="single-content" dangerouslySetInnerHTML={{__html: person.biography}}></div>
+    console.log(this.props)
+    const person = this.props.person
+    const name = `${person.first_name} ${person.last_name}`
+    return (
+      <Container>
+        <div id="profile" ref="profile" className="person-container">
+          <Helmet>
+            <title>{`People | ${name}`}</title>
+          </Helmet>
+          <div className="person-info has-text-centered">
+            <img className="profile-picture" src={person.profile_picture} alt={name} />
+            <h1 id="name" className="title name">{name}</h1>
+            <p>{person.affiliation}</p>
+            <p>{`${person.college} ${person.graduation_year}`}</p>
+          </div>
+          <div className="single-content" dangerouslySetInnerHTML={{__html: person.biography}}></div>
+          { person.projects.length > 0 ? (
             <div className="collection">
               <h1 className="is-size-4 title">Projects</h1>
               <ProjectList projects={person.projects} />
             </div>
-          </div>
-        </Container>
-      )
-    } else {
-      return <div id="profile" ref="profile" className="person-container"></div>
-    }
+          ) : null }
+        </div>
+      </Container>
+    )
   }
 }
 

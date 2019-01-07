@@ -3,13 +3,11 @@ import { Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import ReactGA from 'react-ga'
 
+import routes from './routes/routes'
+import Page from './pages/Page'
+
 import Navigation from './containers/navigation'
 import Footer from './components/footer'
-
-import Page from './containers/page'
-import Home from './containers/home'
-import Person from './containers/person'
-import Project from './containers/project'
 
 import './App.css'
 import './styles/main.css'
@@ -24,10 +22,7 @@ class App extends Component {
         <div>
           <Navigation />          
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/people/:person" component={Person} />
-            <Route exact path="/research-projects/:project" component={Project} />
+            {routes.map(route => <Route exact path={route.path} component={route.component} name={route.name} key={route.name} />)}
             <Route exact path="/:page" render={(props) => (
               <Page slug={props.match.params.page} key={props.match.params.page} />)} />
           </Switch>

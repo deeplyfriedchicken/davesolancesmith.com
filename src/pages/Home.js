@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchPage } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
-import Announcements from './announcements'
+import Announcements from './Announcements'
 
 import Container from './../components/container'
 import Loading from './../components/loading'

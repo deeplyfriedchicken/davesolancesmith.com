@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchProjects } from '../actions/index'
+import { fetchPage, fetchProjects } from '../actions/index'
 
+import Container from '../components/container'
 import ProjectList from '../components/project-list'
 
 class Projects extends Component {
   componentDidMount () {
+    this.props.fetchPage('research-projects')
     this.props.fetchProjects()
   }
 
@@ -16,18 +18,23 @@ class Projects extends Component {
       projects = projects.slice(0, this.props.limit)
     }
     return (
-      <div className="collection">
-        <h1 className="is-size-4 title">Projects</h1>
+      <Container>
+        <div className="has-text-centered">
+          <h1 className="title">{this.props.page.title}</h1>
+          {this.props.page.subtitle ? <p className="subtitle">{this.props.page.subtitle}</p> : null}
+          <hr />
+        </div>
         <ProjectList projects={projects} />
-      </div>
+      </Container>
     )
   }
 }
 
 function mapStateToProps (state) {
   return {
+    page: state.page,
     projects: state.projects
   }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchProjects })(Projects))
+export default withRouter(connect(mapStateToProps, { fetchPage, fetchProjects })(Projects))

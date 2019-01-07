@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+// import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchPage } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
-import Announcements from './announcements'
-import People from './people'
-import Projects from './projects'
-import Publications from './publications'
-
-import Hero from './../components/hero'
-import Container from './../components/container'
-import Loading from './../components/loading'
+import Hero from '../components/hero'
+import Container from '../components/container'
+import Loading from '../components/loading'
 
 class Page extends Component {
   constructor (props) {
@@ -71,17 +66,6 @@ class Page extends Component {
 
         <Container>
           <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.page.content}}></div>
-          <Route exact path="/" render={() => (
-            <div>
-              <Announcements />
-              <Publications />
-              <People />
-              <Projects />
-            </div> )}/>
-          <Route exact path="/announcements" component={Announcements}/>
-          <Route exact path="/publications" component={Publications}/>
-          <Route exact path="/research-projects" component={Projects}/>
-          <Route exact path="/people" component={People}/>
         </Container>
       </div>
     )
