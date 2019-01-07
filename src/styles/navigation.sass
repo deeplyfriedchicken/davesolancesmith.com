@@ -1,18 +1,20 @@
 @import '../mq.sass'
 
-+desktop
-    .navbar
-        border-bottom: 1px solid #dbdbdb
+.navbar
+    border-bottom: 1px solid #dbdbdb
+
+.navbar-brand
+    margin-right: 1rem
 
 .navbar-burger
     margin-left: auto
-    margin-right: auto
+    margin-right: 0
 
-.navbar-start
-  .navbar-main:hover, .navbar-main.active
-      color: $link
-  +desktop
+.navbar-main:hover, .navbar-main.active
+    color: $link
+
++desktop
     .navbar-main:hover, .navbar-main.is-active
-      border-bottom: 5px solid black
+        border-bottom: 5px solid black
     .navbar-item
-      font-size: 1rem
+        font-size: 1rem

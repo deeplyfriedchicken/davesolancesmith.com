@@ -59,6 +59,7 @@ export function fetchProjects () {
 
 export function fetchPublications () {
   const request = axios.get(`${BASE_URL}/content/?keys=publications&auth_token=${API_KEY}`)
+  console.log(`${BASE_URL}/content/?keys=publications&auth_token=${API_KEY}`, request)
   return {
     type: FETCH_PUBLICATIONS,
     payload: request

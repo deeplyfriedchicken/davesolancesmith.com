@@ -5,10 +5,10 @@ import '../styles/footer.css'
 class Footer extends Component {
   render () {
     return (
-      <div className="hero-foot footer-custom">
+      <div className="hero-foot">
         <div className="container has-text-centered">
           <hr/>
-          <div>
+          <div className="has-text-centered is-centered">
             <a href="https://buttercms.com/" target="_blank" rel="noopener noreferrer">
               <img className="buttercms" alt="buttercms attribution logo" src="https://cdn.buttercms.com/PGJPyIwaQ2KnOA8UyKfH" />
             </a>

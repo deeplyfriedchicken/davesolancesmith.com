@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchNavLinks, fetchStaticContent } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
-import '../styles/navigation.sass'
+import '../styles/navigation.css'
 
 class Navigation extends Component {
   constructor (props) {
@@ -45,8 +45,6 @@ class Navigation extends Component {
           <link rel="icon" type="image/png" href={this.props.favicon.image} sizes="32x32" />
           </Helmet>
           <img className="image logo" alt="David Smith - Logo" src={this.props.logo.image} />
-          <p className="is-size-3 has-text-weight-bold">{this.props.title.text}</p>
-          <p className="is-size-6">{this.props.subtitle.text}</p>
         </div>
       )
     }
@@ -57,7 +55,7 @@ class Navigation extends Component {
       <nav className="navbar is-transparent">
         <div className="navbar-brand">
           <a className="navbar-item">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Dave Solance Smith Logo" />
+          <h1 className="subtitle">Dave Smith</h1>
           </a>
 
           <a className={`navbar-burger burger ${(this.state.isActive ? ' is-active' : '')}`} onClick={this.toggleBurger}>

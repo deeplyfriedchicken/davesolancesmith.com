@@ -13,13 +13,17 @@ class Hero extends Component {
             style={{backgroundImage: `url(${this.props.hero})` }}>
             <div class="hero-body">
               <div class="container has-text-centered">
-                <h1 class="title">
-                  { this.props.title }
-                </h1>
+                { this.props.title !== "" ? (
+                  <h1 class="title">
+                    { this.props.title }
+                  </h1>
+                ) : null}
                 <div>
-                  <h2 class="subtitle">
-                    { this.props.subtitle }
-                  </h2>
+                  { this.props.subtitle !== "" ? (
+                    <h1 class="title">
+                      { this.props.subtitle }
+                    </h1>
+                  ) : null}
                 </div>
               </div>
             </div>
