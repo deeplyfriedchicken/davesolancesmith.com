@@ -7,9 +7,6 @@ import Announcements from './Announcements'
 import PageLayout from '../containers/PageLayout'
 import Container from './../components/container'
 
-import Slider from 'react-slick'
-
-import '../styles/slick.css'
 import '../styles/home.css'
 
 class Home extends Component {
