@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+
+import LoadingReducer from './reducer_loading'
 import PageReducer from './reducer_pages'
 import NavLinksReducer from './reducer_nav_links'
 import StaticContentReducer from './reducer_static_content'
@@ -21,6 +23,7 @@ const rootReducer = combineReducers({
   static: StaticContentReducer,
   person: PersonReducer,
   project: ProjectReducer,
+  loading: LoadingReducer
 })
 
 export default rootReducer

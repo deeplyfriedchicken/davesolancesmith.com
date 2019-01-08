@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPage } from '../actions/index'
 import { Helmet } from 'react-helmet'
 
 import Announcements from './Announcements'
 
+import PageLayout from '../containers/PageLayout'
 import Container from './../components/container'
-import Loading from './../components/loading'
 
 import Slider from 'react-slick'
 
@@ -14,25 +13,11 @@ import '../styles/slick.css'
 import '../styles/home.css'
 
 class Home extends Component {
-  constructor (props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      isLoading: true
+        this.state = { loading: true }
     }
-  }
-
-  componentDidMount () {
-    setTimeout(() => {
-      this.fetchPage('home')
-    }, 500)
-  }
-
-  fetchPage (page) {
-    this.props.fetchPage(page).then(() => {
-      this.setState({ isLoading: false })
-    })
-  }
 
   renderSlides () {
     if (this.props.home.slides) {
@@ -78,7 +63,6 @@ class Home extends Component {
   }
 
   render () {
-    if (this.state.isLoading) return <Loading loading={this.state.isLoading} />
     const home = this.props.home
     const settings = {
       dots: true,
@@ -88,22 +72,23 @@ class Home extends Component {
       slidesToScroll: 1,
       arrows: true
     }
+
     return (
-      <div className="page-container">
+      <PageLayout page="home" noContainer>
         <Helmet>
           <title>{home.tab_title}</title>
           <meta name="description" content={home.description} />
         </Helmet>
 
         <Slider {...settings}>
-          {this.renderSlides()}
+        {this.renderSlides()}
         </Slider>
 
         <Container>
-          <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.home.content}}></div>
-          <Announcements limit={home.annoucnement_limit} />
+            <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.home.content}}></div>
+            <Announcements limit={home.annoucnement_limit} />
         </Container>
-      </div>
+      </PageLayout>
     )
   }
 }
@@ -114,4 +99,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPage })(Home)
+export default connect(mapStateToProps)(Home)

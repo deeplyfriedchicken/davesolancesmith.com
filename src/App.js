@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import ReactGA from 'react-ga'
 
-import routes from './routes/routes'
-import Page from './pages/Page'
+import RouterNode from './containers/RouterNode'
 
+import ScrollToTop from './components/ScrollToTop'
 import Navigation from './containers/navigation'
 import Footer from './components/footer'
 
@@ -19,15 +19,15 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <div>
-          <Navigation />          
-          <Switch>
-            {routes.map(route => <Route exact path={route.path} component={route.component} name={route.name} key={route.name} />)}
-            <Route exact path="/:page" render={(props) => (
-              <Page slug={props.match.params.page} key={props.match.params.page} />)} />
-          </Switch>
-          <Footer />
-        </div>
+        <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
+            <ScrollToTop>
+                <div className="layout">
+                        <Navigation />
+                        <RouterNode />
+                        <Footer />
+                </div>
+            </ScrollToTop>
+        </BrowserRouter>
       </div>
     )
   }

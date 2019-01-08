@@ -10,7 +10,15 @@ export const FETCH_PUBLICATIONS = 'fetch_publications'
 export const FETCH_STATIC_CONTENT = 'fetch_static_content'
 export const FETCH_PERSON = 'fetch_person'
 export const FETCH_PROJECT = 'fetch_project'
+export const SET_LOADING = 'set_loading'
 
+
+export function setLoading(loading) {
+    return {
+        type: SET_LOADING,
+        payload: loading
+    }
+}
 
 export function fetchPage (page = 'home') {
   let requestURL = `${BASE_URL}/pages/*/${page}?auth_token=${API_KEY}`

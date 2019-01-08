@@ -1,10 +1,37 @@
 @import '../App.sass'
 /* github.com/plasticneko
 /* bulma css framework by jeremy thomas (github.com/jgthms | bulma.io)
+
+html, body, #root, .App
+  height: 100%
+
+.layout
+  min-height: 100%
+  display: grid
+  grid-template-rows: auto 1fr auto
+  grid-template-areas: "navigation" "content" "footer"
+
+  .navbar
+    grid-area: navigation
+
+  .route-container
+    grid-area: content
+
+  .hero-foot
+    grid-area: footer
+
 .content
   padding-bottom: 50px
   p
     padding-bottom: 15px
+
+.page-container.loading
+  height: 1000px
+  opacity: 0
+
+.page-container.loaded
+  opacity: 1
+  transition: opacity 300ms linear
 
 .container
   word-break: break-word

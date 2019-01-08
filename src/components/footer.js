@@ -8,7 +8,6 @@ class Footer extends Component {
     return (
       <div className="hero-foot">
         <div className="container has-text-centered">
-          <hr/>
           <div className="has-text-centered is-centered">
             <img href="https://reactjs.org/" target="_blank" rel="noopener noreferrer" className="react-logo" src={reactLogo} alt="react logo" />
             <a href="https://buttercms.com/" target="_blank" rel="noopener noreferrer">

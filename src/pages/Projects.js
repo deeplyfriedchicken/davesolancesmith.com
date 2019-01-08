@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchPage, fetchProjects } from '../actions/index'
+import { fetchProjects } from '../actions/index'
 
+import PageLayout from '../containers/PageLayout'
 import Container from '../components/container'
 import ProjectList from '../components/project-list'
 
 class Projects extends Component {
   componentDidMount () {
-    this.props.fetchPage('research-projects')
     this.props.fetchProjects()
   }
 
@@ -18,14 +18,16 @@ class Projects extends Component {
       projects = projects.slice(0, this.props.limit)
     }
     return (
-      <Container>
-        <div className="has-text-centered">
-          <h1 className="title">{this.props.page.title}</h1>
-          {this.props.page.subtitle ? <p className="subtitle">{this.props.page.subtitle}</p> : null}
-          <hr />
-        </div>
-        <ProjectList projects={projects} />
-      </Container>
+        <PageLayout page="research-projects">
+            <Container>
+                <div className="has-text-centered">
+                    <h1 className="title">{this.props.page.title}</h1>
+                    {this.props.page.subtitle ? <p className="subtitle">{this.props.page.subtitle}</p> : null}
+                    <hr />
+                </div>
+                <ProjectList projects={projects} />
+            </Container>
+        </PageLayout>
     )
   }
 }
@@ -37,4 +39,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchPage, fetchProjects })(Projects))
+export default withRouter(connect(mapStateToProps, { fetchProjects })(Projects))
