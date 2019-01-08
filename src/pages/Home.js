@@ -21,27 +21,7 @@ class Home extends Component {
 
   renderSlides () {
     if (this.props.home.slides) {
-      return this.props.home.slides.map(slide => {
-        if (slide.link !== "") {
-          return (
-            <div key={slide.title}>
-              <div id="home-hero" className="hero is-info is-medium is-bold" style={{backgroundImage: `url(${slide.image})` }}>
-                <div className="hero-body">
-                  <div className="has-text-centered">
-                    <a target="_blank" href={slide.link}>
-                      <div>
-                        <h1 className="title">{slide.title}</h1>
-                      </div>
-                      <div>
-                        <h2 className="subtitle">{slide.subtitle}</h2>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )
-        }
+      const slide = this.props.home.slides[0]
         return (
           <div key={slide.title}>
             <div id="home-hero" className="hero is-info is-medium is-bold" style={{backgroundImage: `url(${slide.image})` }}>
@@ -58,20 +38,11 @@ class Home extends Component {
             </div>
           </div>
         )
-      })
     }
   }
 
   render () {
     const home = this.props.home
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: true
-    }
 
     return (
       <PageLayout page="home" noContainer>
@@ -80,9 +51,7 @@ class Home extends Component {
           <meta name="description" content={home.description} />
         </Helmet>
 
-        <Slider {...settings}>
         {this.renderSlides()}
-        </Slider>
 
         <Container>
             <div className="single-content" dangerouslySetInnerHTML={{__html: this.props.home.content}}></div>
